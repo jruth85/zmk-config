@@ -1,8 +1,11 @@
 /*
  * Corne ZMK keymap
- * Converted from crone.vil (Vial). Same layers and layer keys.
- * Layer 3's RGB keys were replaced with Bluetooth/output controls,
- * and a bootloader key was added to each half.
+ * Matches crone.vil. Layer 3's RGB keys are Bluetooth/output controls here,
+ * and each half has a bootloader key on layer 3.
+ *
+ * Sticky layers (&sl) act like &mo when held, and like one-shot layers when tapped.
+ * Tap the Fn thumb key once  -> next key comes from Fn (layer 2).
+ * Tap it twice               -> next key comes from Shifted Numbers (layer 4).
  */
 
 #include <behaviors.dtsi>
@@ -20,9 +23,9 @@
 // ,-----------------------------------------------------.             ,-----------------------------------------------------.
    &gresc     &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P      &kp BSPC
    &kp LCTRL  &kp A      &kp S      &kp D      &kp F      &kp G          &kp H      &kp J      &kp K      &kp L      &kp SEMI   &kp SQT
-   &kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH   &mo 1
+   &kp LSHFT  &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH   &sl 1
 //                                  `--------------------------------'  `--------------------------------'
-                                    &kp LGUI   &mo 2      &kp RSHFT      &kp SPACE  &kp RET    &kp RALT
+                                    &kp LGUI   &sl 2      &kp RSHFT      &kp SPACE  &kp RET    &kp RALT
             >;
         };
 
@@ -31,8 +34,8 @@
             bindings = <
 // ,-----------------------------------------------------.             ,-----------------------------------------------------.
    &kp TAB    &kp N1     &kp N2     &kp N3     &kp N4     &kp N5         &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp DEL
-   &kp LCTRL  &none      &kp UP     &none      &none      &kp MINUS      &kp PG_UP  &kp HOME   &kp INS    &kp LBKT   &kp UP     &kp BSLH
-   &kp LSHFT  &kp LEFT   &kp DOWN   &kp RIGHT  &none      &kp EQUAL      &kp PG_DN  &kp END    &kp LS(INS) &kp LEFT  &kp RIGHT  &kp RIGHT
+   &kp LCTRL  &none      &kp UP     &none      &kp UNDER  &kp MINUS      &kp PG_UP  &kp HOME   &kp INS    &kp UP     &kp DOWN   &none
+   &kp LSHFT  &kp LEFT   &kp DOWN   &kp RIGHT  &kp PLUS   &kp EQUAL      &kp PG_DN  &kp END    &kp LS(INS) &kp LEFT  &kp RIGHT  &none
 //                                  `--------------------------------'  `--------------------------------'
                                     &kp LGUI   &mo 3      &trans         &kp SPACE  &trans     &kp RALT
             >;
@@ -43,10 +46,10 @@
             bindings = <
 // ,-----------------------------------------------------.             ,-----------------------------------------------------.
    &kp ESC    &kp F1     &kp F2     &kp F3     &kp F4     &kp F5         &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp BSPC
-   &kp LCTRL  &none      &none      &none      &none      &kp F11        &kp F12    &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH   &kp GRAVE
-   &kp LSHFT  &none      &none      &none      &none      &none          &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
+   &kp LCTRL  &none      &none      &none      &none      &kp F11        &kp F12    &none      &kp LBKT   &kp RBKT   &kp BSLH   &kp GRAVE
+   &kp LSHFT  &none      &none      &none      &none      &none          &none      &none      &kp LBRC   &kp RBRC   &kp PIPE   &kp TILDE
 //                                  `--------------------------------'  `--------------------------------'
-                                    &kp LGUI   &trans     &mo 3          &kp RET    &trans     &kp RALT
+                                    &kp LGUI   &sl 4      &mo 3          &kp RET    &trans     &kp RALT
             >;
         };
 
@@ -62,8 +65,19 @@
             >;
         };
 
-        // Empty layers for ZMK Studio to fill in. Ignored by non-Studio builds.
+        shifted_numbers_layer {
+            display-name = "Shift Num";
+            bindings = <
+// ,-----------------------------------------------------.             ,-----------------------------------------------------.
+   &trans     &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp STAR   &kp LPAR   &kp RPAR   &trans
+   &trans     &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans     &trans
+   &trans     &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans     &trans
+//                                  `--------------------------------'  `--------------------------------'
+                                    &trans     &trans     &trans         &trans     &trans     &trans
+            >;
+        };
+
+        // Empty layer for ZMK Studio to fill in. Ignored by non-Studio builds.
         extra1 { status = "reserved"; };
-        extra2 { status = "reserved"; };
     };
 };
