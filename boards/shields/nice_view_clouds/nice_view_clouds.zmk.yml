@@ -1,0 +1,8 @@
+file_format: "1"
+id: nice_view_clouds
+name: nice!view (layer list and clouds)
+type: shield
+url: https://nicekeyboards.com/nice-view
+requires: [nice_view_header]
+features:
+  - display
