@@ -1,0 +1,4 @@
+# Custom nice!view screens: layer list on the left, mountain and clouds on the right.
+
+config SHIELD_NICE_VIEW_CLOUDS
+    def_bool $(shields_list_contains,nice_view_clouds)

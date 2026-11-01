@@ -1,0 +1,5 @@
+if(CONFIG_ZMK_DISPLAY AND CONFIG_NICE_VIEW_CLOUDS_SCREEN)
+  zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
+  zephyr_library_sources(nice_view_clouds.c)
+  zephyr_library_sources(clouds_art.c)
+endif()
