@@ -1,6 +1,7 @@
 /*
  * Corne ZMK keymap
- * Matches the Vial (QMK) Corne layout from 2026-10-30 (vial/corne/corne.vil):
+ * Matches the Vial (QMK) Corne layout from 2026-10-30 (vial/corne/corne.vil),
+ * with Flow Tap off on G and B:
  *   - NUM on G, NAV on B (hold), SYM on Tab, FUN on Space, MOUS on Enter
  *   - one-shot Shift on the left inner thumb
  *   - Shift + G / B / Tab / Space types the key, never the layer
@@ -35,15 +36,16 @@
 
 / {
     behaviors {
-        // Layer-tap for letter keys, tuned like the Vial settings:
-        // Flow Tap 250 ms (require-prior-idle) and Chordal Hold
-        // (only a right-hand key or a thumb can turn it into the layer).
+        // Layer-tap for letter keys (G, B): the layer only after a 200 ms
+        // hold, and only a right-hand key or a thumb can trigger it (Chordal
+        // Hold). Flow Tap is off, so the layer is there right after typing.
+        // If G or B start turning into layers mid-word, add back:
+        //     require-prior-idle-ms = <125>;
         ltl: layer_tap_letter {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            require-prior-idle-ms = <250>;
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
