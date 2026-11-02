@@ -112,9 +112,9 @@
             display-name = "SYM";
             bindings = <
 // ,-----------------------------------------------------.             ,-----------------------------------------------------.
-   &none      &kp CARET  &kp AMPS   &kp STAR   &kp LPAR   &kp RPAR       &kp LBKT   &kp RBKT   &kp RBKT   &none      &none      &trans
-   &none      &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp LBRC   &kp RBRC   &kp RBRC   &none      &none      &none
-   &none      &none      &kp PLUS   &kp EQUAL  &kp UNDER  &kp MINUS      &kp LPAR   &kp RPAR   &kp RPAR   &none      &none      &none
+   &none      &kp CARET  &kp AMPS   &kp STAR   &kp LPAR   &kp RPAR       &none      &kp LBKT   &kp RBKT   &kp RBKT   &none      &trans
+   &none      &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &none      &kp LBRC   &kp RBRC   &kp RBRC   &none      &none
+   &none      &none      &kp PLUS   &kp EQUAL  &kp UNDER  &kp MINUS      &none      &kp LPAR   &kp RPAR   &kp RPAR   &none      &none
 //                                  `--------------------------------'  `--------------------------------'
                                     &kp LPAR   &kp RPAR   &kp CAPS       &trans     &none      &none
             >;
