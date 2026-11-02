@@ -1,7 +1,8 @@
 /*
- * Corne ZMK keymap (layout from ZMK Studio, 2026-11-01)
- *   - layer keys on both index fingers, tap for the letter, hold for the layer:
- *       R / U = SYM     F / J = NUM     V / M = NAV
+ * Corne ZMK keymap (layout from ZMK Studio, 2026-11-01; matches vial corne.vil)
+ *   - layer keys on both index and middle fingers, tap for the letter, hold
+ *     for the layer:
+ *       E R / U I = SYM     D F / J K = NUM     C V / M , = NAV
  *     A left-hand layer key only turns into the layer when a right-hand key or
  *     a thumb is pressed, and vice versa (Chordal Hold), so rolls stay letters.
  *   - right thumbs: Space, Tab (hold FUN), Enter (hold MOUS)
@@ -77,6 +78,12 @@
             hold-trigger-on-release;
         };
 
+        SHIFT_OR(e_sym, "E or SYM",   &ltl SYM E, &kp E)
+        SHIFT_OR(d_num, "D or NUM",   &ltl NUM D, &kp D)
+        SHIFT_OR(c_nav, "C or NAV",   &ltl NAV C, &kp C)
+        SHIFT_OR(i_sym, "I or SYM",   &ltr SYM I, &kp I)
+        SHIFT_OR(k_num, "K or NUM",   &ltr NUM K, &kp K)
+        SHIFT_OR(comma_nav, ", or NAV", &ltr NAV COMMA, &kp COMMA)
         SHIFT_OR(r_sym, "R or SYM",   &ltl SYM R, &kp R)
         SHIFT_OR(f_num, "F or NUM",   &ltl NUM F, &kp F)
         SHIFT_OR(v_nav, "V or NAV",   &ltl NAV V, &kp V)
@@ -93,9 +100,9 @@
             display-name = "BASE";
             bindings = <
 // ,-----------------------------------------------------.             ,-----------------------------------------------------.
-   &gresc     &kp Q      &kp W      &kp E      &r_sym     &kp T          &kp Y      &u_sym     &kp I      &kp O      &kp P      &kp BSPC
-   &kp INS    &kp A      &kp S      &kp D      &f_num     &kp G          &kp H      &j_num     &kp K      &kp L      &kp SEMI   &kp SQT
-   &kp LCTRL  &kp Z      &kp X      &kp C      &v_nav     &kp B          &kp N      &m_nav     &kp COMMA  &kp DOT    &kp FSLH   &kp BSLH
+   &gresc     &kp Q      &kp W      &e_sym     &r_sym     &kp T          &kp Y      &u_sym     &i_sym      &kp O      &kp P      &kp BSPC
+   &kp INS    &kp A      &kp S      &d_num     &f_num     &kp G          &kp H      &j_num     &k_num      &kp L      &kp SEMI   &kp SQT
+   &kp LCTRL  &kp Z      &kp X      &c_nav     &v_nav     &kp B          &kp N      &m_nav     &comma_nav  &kp DOT    &kp FSLH   &kp BSLH
 //                                  `--------------------------------'  `--------------------------------'
                                     &kp DEL    &kp LGUI   &sk LSHFT      &kp SPACE  &tab_fun   &lt MOUS RET
             >;
