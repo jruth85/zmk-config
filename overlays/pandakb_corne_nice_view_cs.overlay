@@ -1,0 +1,10 @@
+/* PandaKB Corne only: this PCB routes the nice!view's CS to D0 (P0.08), not D1
+ * as nice_view_adapter assumes. With D1, CS floats and the screens show
+ * vertical lines or missing sections. Applied with EXTRA_DTC_OVERLAY_FILE in
+ * build.yaml, which Zephyr applies after the shield overlays. The Typeractive
+ * Corne uses the stock D1, so its builds leave this out. */
+#include <dt-bindings/gpio/gpio.h>
+
+&nice_view_spi {
+    cs-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
+};
