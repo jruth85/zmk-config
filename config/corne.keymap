@@ -55,7 +55,7 @@
 
 / {
     behaviors {
-        // Layer-tap on left-hand letters. The layer only after a 300 ms hold
+        // Layer-tap on left-hand letters. The layer only after a 400 ms hold
         // with a right-hand key or a thumb; a left-hand key settles it as the
         // letter at once. require-prior-idle-ms is ZMK's Flow Tap (250 ms, as on
         // the Lily), quick-tap-ms makes tap-then-hold repeat the letter, and
@@ -66,7 +66,7 @@
             #binding-cells = <2>;
             display-name = "Layer-Tap (left)";
             flavor = "tap-preferred";
-            tapping-term-ms = <300>;
+            tapping-term-ms = <400>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <250>;
             retro-tap;
@@ -80,7 +80,7 @@
             #binding-cells = <2>;
             display-name = "Layer-Tap (right)";
             flavor = "tap-preferred";
-            tapping-term-ms = <300>;
+            tapping-term-ms = <400>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <250>;
             retro-tap;
