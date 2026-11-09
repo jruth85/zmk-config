@@ -5,7 +5,7 @@
  *   - Layer keys: NAV on R/U, NUM on F/J, SYM on G/H. Tap for the letter.
  *     A layer key only becomes its layer when a key on the other hand or a
  *     thumb is pressed; a same-hand key types the letter right away.
- *   - Flow tap: a layer key pressed within 150 ms of another key is always the
+ *   - Flow tap: a layer key pressed within 250 ms of another key is always the
  *     letter, with no waiting. This is what stops the stutter while typing.
  *   - Right thumbs: Space, Tab (hold FUN), Enter (hold MOUS). Plain Shift.
  *   - Shift + a layer key always types the key, never the layer.
@@ -55,18 +55,21 @@
 
 / {
     behaviors {
-        // Layer-tap on left-hand letters. The layer only after a 200 ms hold
+        // Layer-tap on left-hand letters. The layer only after a 300 ms hold
         // with a right-hand key or a thumb; a left-hand key settles it as the
-        // letter at once. require-prior-idle-ms is ZMK's Flow Tap, quick-tap-ms
-        // makes tap-then-hold repeat the letter.
+        // letter at once. require-prior-idle-ms is ZMK's Flow Tap (250 ms, as on
+        // the Lily), quick-tap-ms makes tap-then-hold repeat the letter, and
+        // retro-tap types the letter if the key is held past the term and
+        // released with nothing else pressed.
         ltl: layer_tap_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             display-name = "Layer-Tap (left)";
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <200>;
-            require-prior-idle-ms = <150>;
+            require-prior-idle-ms = <250>;
+            retro-tap;
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = <KEYS_R THUMBS>;
         };
@@ -77,9 +80,10 @@
             #binding-cells = <2>;
             display-name = "Layer-Tap (right)";
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <200>;
-            require-prior-idle-ms = <150>;
+            require-prior-idle-ms = <250>;
+            retro-tap;
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = <KEYS_L THUMBS>;
         };
