@@ -1,0 +1,28 @@
+/* TEST: PandaKB Lily58 right half with the diodes reversed (row2col).
+ * Same pins as ZMK's stock lily58 shield, but the columns are the inputs (pull-down)
+ * and the rows are driven. Includes the PandaKB nice!view CS-on-D0 fix, since only
+ * one EXTRA_DTC_OVERLAY_FILE is passed per build. */
+#include <dt-bindings/gpio/gpio.h>
+
+&nice_view_spi {
+    cs-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
+};
+
+&kscan0 {
+    diode-direction = "row2col";
+    row-gpios
+        = <&pro_micro 5 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 7 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 8 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 9 GPIO_ACTIVE_HIGH>
+        ;
+    col-gpios
+        = <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        ;
+};
